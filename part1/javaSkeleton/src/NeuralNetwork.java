@@ -149,4 +149,15 @@ public class NeuralNetwork {
         return predictions;
     }
 
+    // get accuracy
+    public double getAccuracy(int[] predictions, int[] desired_outputs) {
+        double accuracy = 0;
+        for (int i = 0; i < predictions.length; i++) {
+            if (predictions[i] == desired_outputs[i]) {
+                accuracy++;
+            }
+        }
+        return accuracy / predictions.length;
+    }
+
 }
