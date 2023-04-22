@@ -20,9 +20,10 @@ public class Rescaler {
 
     }
 
-    public void rescaleData(double[][] data) {
+    public void rescaleData(double[][] data, boolean biases) {
         for (double[] instance : data) {
             for (int j = 0; j < instance.length; j++) {
+                if(biases && j == instance.length -1) continue;
                 instance[j] = (instance[j] - mins[j]) / (maxes[j] - mins[j]);
             }
         }
