@@ -39,7 +39,7 @@ public class NeuralNetwork {
             for (int j = 0; j < inputs.length; j++) {
                 weighted_sum += inputs[j] * hidden_layer_weights[j][i];
             }
-            double output = biases &&  i == num_hidden - 1 ? 1 :  sigmoid(weighted_sum);
+            double output = biases && i == num_hidden - 1 ? 1 : sigmoid(weighted_sum);
             hidden_layer_outputs[i] = output;
         }
 
@@ -52,7 +52,7 @@ public class NeuralNetwork {
             double output = sigmoid(weighted_sum);
             output_layer_outputs[i] = output;
         }
-        return new double[][] { hidden_layer_outputs, output_layer_outputs };
+        return new double[][] {hidden_layer_outputs, output_layer_outputs};
     }
 
     public double[][][] backward_propagate_error(double[] inputs, double[] hidden_layer_outputs,
@@ -72,19 +72,21 @@ public class NeuralNetwork {
 
             for (int k = 0; k < num_outputs; k++) {
                 hidden_layer_betas[j] += output_layer_weights[j][k]
-                        * (output_layer_outputs[k] * (1 - output_layer_outputs[k])) * output_layer_betas[k];
+                        * (output_layer_outputs[k] * (1 - output_layer_outputs[k]))
+                        * output_layer_betas[k];
             }
 
         }
-        if(print && !sTesting){
-        System.out.println("HL betas: " + Arrays.toString(hidden_layer_betas));
+        if (print && !sTesting) {
+            System.out.println("HL betas: " + Arrays.toString(hidden_layer_betas));
         }
         // getting weight deltas page 13 back propagation slides
         double[][] delta_output_layer_weights = new double[num_hidden][num_outputs];
         for (int i = 0; i < num_hidden; i++) {
             for (int j = 0; j < num_outputs; j++) {
-                delta_output_layer_weights[i][j] = learning_rate * hidden_layer_outputs[i] * output_layer_outputs[j]
-                        * (1 - output_layer_outputs[j]) * output_layer_betas[j];
+                delta_output_layer_weights[i][j] =
+                        learning_rate * hidden_layer_outputs[i] * output_layer_outputs[j]
+                                * (1 - output_layer_outputs[j]) * output_layer_betas[j];
             }
         }
 
@@ -92,12 +94,13 @@ public class NeuralNetwork {
         double[][] delta_hidden_layer_weights = new double[num_inputs][num_hidden];
         for (int i = 0; i < num_inputs; i++) {
             for (int j = 0; j < num_hidden; j++) {
-                delta_hidden_layer_weights[i][j] = learning_rate * inputs[i] * hidden_layer_outputs[j]
-                        * (1 - hidden_layer_outputs[j]) * hidden_layer_betas[j];
+                delta_hidden_layer_weights[i][j] =
+                        learning_rate * inputs[i] * hidden_layer_outputs[j]
+                                * (1 - hidden_layer_outputs[j]) * hidden_layer_betas[j];
             }
         }
 
-        return new double[][][] { delta_output_layer_weights, delta_hidden_layer_weights };
+        return new double[][][] {delta_output_layer_weights, delta_hidden_layer_weights};
     }
 
     public void update_weights(double[][] delta_output_layer_weights,
@@ -120,7 +123,8 @@ public class NeuralNetwork {
     public void train(double[][] instances, int[][] desired_outputs, int epochs) {
         for (int epoch = 0; epoch < epochs; epoch++) {
             double accuracy = 0;
-            if(!sTesting)System.out.println("epoch = " + epoch);
+            if (!sTesting)
+                System.out.println("epoch = " + epoch);
             for (int i = 0; i < instances.length; i++) {
                 double[] instance = instances[i];
                 double[][] outputs = forward_pass(instance);
@@ -145,14 +149,17 @@ public class NeuralNetwork {
             }
 
             // Print new weights
-            if(!sTesting)System.out
-                    .println("Hidden layer weights \n" + Arrays.deepToString(hidden_layer_weights));
-            if(!sTesting)System.out.println(
-                    "Output layer weights  \n" + Arrays.deepToString(output_layer_weights));
+            if (!sTesting)
+                System.out.println(
+                        "Hidden layer weights \n" + Arrays.deepToString(hidden_layer_weights));
+            if (!sTesting)
+                System.out.println(
+                        "Output layer weights  \n" + Arrays.deepToString(output_layer_weights));
 
             // TODO: Print accuracy achieved over this epoch
             double acc = accuracy / instances.length;
-            if(!sTesting) System.out.println("acc = " + acc);
+            if (!sTesting)
+                System.out.println("acc = " + acc);
         }
     }
 
