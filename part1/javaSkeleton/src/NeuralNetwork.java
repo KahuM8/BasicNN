@@ -148,14 +148,6 @@ public class NeuralNetwork {
                 update_weights(delta_weights[0], delta_weights[1]);
             }
 
-            // Print new weights
-            if (!sTesting)
-                System.out.println(
-                        "Hidden layer weights \n" + Arrays.deepToString(hidden_layer_weights));
-            if (!sTesting)
-                System.out.println(
-                        "Output layer weights  \n" + Arrays.deepToString(output_layer_weights));
-
             // TODO: Print accuracy achieved over this epoch
             double acc = accuracy / instances.length;
             if (!sTesting)

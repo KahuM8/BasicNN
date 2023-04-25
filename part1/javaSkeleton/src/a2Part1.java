@@ -11,18 +11,27 @@ public class a2Part1 {
                 // sensitivity testing
                 // epoch testing
                 System.out.println("Epoch testing");
-                runTests(false, 10, 0.2, true);
-                runTests(false, 50, 0.2, true);
-                runTests(false, 90, 0.2, true);
-                runTests(false, 130, 0.2, true);
-                runTests(false, 170, 0.2, true);
+                runTests(false, 1, 0.2, true);
+                runTests(false, 101, 0.2, true);
+                runTests(false, 201, 0.2, true);
+                runTests(false, 301, 0.2, true);
+                runTests(false, 401, 0.2, true);
+                runTests(false, 501, 0.2, true);
                 // learning rate testing
                 System.out.println("Learning rate testing");
                 runTests(false, 100, 0.2, true);
                 runTests(false, 100, 1, true);
                 runTests(false, 100, 1.8, true);
                 runTests(false, 100, 2.6, true);
-                runTests(false, 100, 10, true);
+                runTests(false, 100, 3.4, true);
+                runTests(false, 100, 4.2, true);
+                runTests(false, 100, 5, true);
+                runTests(false, 100, 5.8, true);
+                runTests(false, 100, 6.6, true);
+                runTests(false, 100, 7.4, true);
+                runTests(false, 100, 8.2, true);
+                runTests(false, 100, 9, true);
+
 
                 // talk about if the changes are linear
         }
@@ -39,6 +48,12 @@ public class a2Part1 {
 
                 if (!sTesting)
                         System.out.println(Arrays.deepToString(instances));
+                System.out.println(
+                                "--------------------------------------------------------------------------------------------");
+
+                if (biases) {
+                        System.out.println("***Biases included***\n");
+                }
 
                 // We can"t use strings as labels directly in the network, so need to do some
                 // transformations
@@ -123,10 +138,12 @@ public class a2Part1 {
                         System.out.println("\nAfter training:");
                 if (!sTesting)
                         System.out.println("Hidden layer weights:\n"
-                                        + Arrays.deepToString(nn.hidden_layer_weights));
+                                        + Arrays.deepToString(nn.hidden_layer_weights) + "\n");
                 if (!sTesting)
                         System.out.println("Output layer weights:\n"
-                                        + Arrays.deepToString(nn.output_layer_weights));
+                                        + Arrays.deepToString(nn.output_layer_weights) + "\n");
+
+
 
                 List<String[]> lines_test = Util.getLines("penguins307-test.csv");
                 String[] header_test = lines_test.remove(0);
@@ -136,7 +153,7 @@ public class a2Part1 {
                 // scale the test according to our training data.
                 rescaler.rescaleData(instances_test, biases);
 
-                // TODO: Compute and print the test accuracy
+                ;
                 int[] predicted_labels = nn.predict(instances_test, false);
                 int[] desiredLablesTest = label_encoder.intEncode(labels_test);
                 int num_right = 0;
@@ -146,11 +163,22 @@ public class a2Part1 {
                         }
                 }
                 double accuracy = (1.0 * num_right) / desiredLablesTest.length;
-                System.out.println("Test accuracy: " + accuracy);
-                if (!sTesting)
-                        System.out.println("Finished!");
-                System.out.println();
+                if (!sTesting) {
+                        System.out.println("test predicted labels: "
+                                        + Arrays.toString(predicted_labels));
+                        System.out.println("test hidden layer weights:\n"
+                                        + Arrays.deepToString(nn.hidden_layer_weights) + "\n");
+                        System.out.println("test output layer weights:\n"
+                                        + Arrays.deepToString(nn.output_layer_weights) + "\n");
+                }
+                System.out.println("Test set accuracy: " + accuracy + "  epochs: " + epoch
+                                + "    learning rate: " + learning + "\n");
+                if (!sTesting) {
+                        System.out.println("biases included? " + biases + "\n");
+                        System.out.println("Finished!" + "\n");
+                }
 
+                System.out.println();
         }
 
 }
