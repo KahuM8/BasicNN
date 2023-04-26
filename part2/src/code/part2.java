@@ -2,10 +2,8 @@ package code;
 
 import org.jgap.*;
 import org.jgap.gp.GPProblem;
-import org.jgap.gp.impl.GPConfiguration;
 import org.jgap.gp.impl.GPGenotype;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class part2 {

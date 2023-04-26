@@ -1,2 +1,3 @@
 Main-Class: code/part2
-Class-Path: jgap_3.6.3_jar/jgap.jar jgap_3.6.3_jar/lib/log4j.jar jgap_3.6.3_jar/lib/commons-lang-2.1.ja
+Class-Path: lib/jgap_3.6.3_jar/jgap.jar lib/jgap_3.6.3_jar/lib/log4j.jar lib/jgap_3.6.3_jar/lib/commons-lang-2.1.jar
+
