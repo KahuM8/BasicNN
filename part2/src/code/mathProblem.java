@@ -49,7 +49,7 @@ public class mathProblem extends GPProblem {
                         new Multiply(config, CommandGene.DoubleClass),
                         new Divide(config, CommandGene.DoubleClass),
                         new Subtract(config, CommandGene.DoubleClass),
-                        new Terminal(config, CommandGene.DoubleClass, -99.99, 99.99, true)
+                        new Terminal(config, CommandGene.DoubleClass, -1, 1, true)
                 }
         };
 

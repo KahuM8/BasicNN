@@ -1,9 +1,3 @@
-in a terminal use the command:
-
-bash run.sh
-
-if not run these commands:
-
 javac src/code/*.java -cp lib/jgap_3.6.3_jar/jgap.jar -d bin
 
 cd bin

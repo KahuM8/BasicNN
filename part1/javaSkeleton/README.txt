@@ -1,8 +1,15 @@
  to run this code in terminal type:
  
+ run sh file in terminal with
  
- javac a2Part1.java LabelEncoder.java NeuralNetwork.java Rescaler.java Util.java
+ bash run.sh
+ 
+ or 
+ 
+ 
+ javac a2Part1.java LabelEncoder.java NeuralNetwork.java Rescaler.java Util.java -d bin
 
+cd bin
 
 java a2Part1
 
